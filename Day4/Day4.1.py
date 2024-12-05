@@ -7,6 +7,15 @@ def searchXmas(string):
     total = len(re.findall("XMAS", string))
     return total + len(re.findall("XMAS", reverseString(string)))
 
+def reverseMatrix(matrix):
+    reversedMatrix = []
+    for row in matrix:
+        reversedRow = []
+        for c in reversed(row):
+            reversedRow.append(c)
+        reversedMatrix.append(reversedRow)
+    return reversedMatrix
+
 matrix = []
 with open('wordSearch.txt', 'r') as file:
     for line in file:
@@ -54,13 +63,5 @@ def searchDiagonal(grid):
     return count
 
 total += searchDiagonal(matrix)
-reverseMatrix = []
-for row in matrix:
-    reversedRow = []
-    for c in reversed(row):
-        reversedRow.append(c)
-    reverseMatrix.append(reversedRow)
-
-total += searchDiagonal(reverseMatrix)
-
+total += searchDiagonal(reverseMatrix(matrix))
 print(total)
